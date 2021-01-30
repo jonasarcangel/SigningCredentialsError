@@ -1,0 +1,70 @@
+﻿@using Markdig
+@model Category
+
+@{
+    ViewData["Title"] = $"{Model.Title}";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        @{
+            if (ViewBag.ParentCategory != null)
+            {
+                <li class="breadcrumb-item" aria-current="page"><a href="/category/@ViewBag.ParentCategory.Slug">@ViewBag.ParentCategory.Title</a></li>
+            }
+        }
+    </ol>
+</nav>
+
+<div class="jumbotron">
+    <h1 class="card-title">
+        @Model.Title
+    </h1>
+
+    <div class="row rowmargin">
+        <a href="/category/edit/@Model.Id" class="btn btn-sm btn-primary mb-3 mr-3">
+            Edit Category
+        </a>
+    </div>
+</div>
+
+<div class="row rowmargin">
+    <a href="/category/add/@Model.Id" class="btn btn-sm btn-primary mb-3 mr-3">
+        Add Category
+    </a>
+</div>
+
+@foreach (Category item in ViewBag.Categories)
+{
+    <a href="/category/@item.Slug">@item.Title</a>
+}
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p class="card-text">
+            @Html.Raw(Markdown.ToHtml(Model.Content ?? string.Empty))
+        </p>
+    </div>
+</div>
+
+<div class="row rowmargin">
+    <a href="/page/add/@Model.Id" class="btn btn-sm btn-primary mt-3 mb-3 mr-3">
+        Add Page
+    </a>
+</div>
+
+<div class="d-flex flex-wrap">
+    @foreach (Page item in ViewBag.Pages)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-no-pad">
+            <div class="card shadow  mt-2 mb-2">
+                <div class="card-body">
+                    <p>
+                        <a href="/page/@item.Slug">@item.Title</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

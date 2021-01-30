@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.2" />
+    <PackageReference Include="SendGrid" Version="9.22.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <ProjectReference Include="..\MyProject.Core\MyProject.Core.csproj" />
+	  <ProjectReference Include="..\MyProject.Data\MyProject.Data.csproj" />
+	  <ProjectReference Include="..\MyProject.Data.Identity\MyProject.Data.Identity.csproj" />
+  </ItemGroup>
+
+</Project>
